@@ -1,0 +1,30 @@
+$outline-color: lightgray;
+
+.card {
+  margin: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  border: 2px solid $outline-color;
+  box-shadow: 1px 1px 2px $outline-color;
+}
+
+.title {
+  text-align: center;
+  border-bottom: 2px solid $outline-color;
+  padding-bottom: 0.3rem;
+  margin: 0;
+  font-size: 1.2rem;
+  text-transform: capitalize;
+}
+
+.content {
+  margin: 0;
+  padding-top: 0.5rem;
+  font-size: 1.1rem;
+  text-transform: capitalize;
+}
+
+.created {
+  text-align: right;
+  color: #909090;
+  margin: 0;
+}
