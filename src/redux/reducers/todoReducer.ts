@@ -1,9 +1,9 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
-import { TodoItem } from "../../domain/TodoItem";
-import { TodoList } from "../../domain/TodoList";
+import { TodoItem } from "../../types/TodoItem";
+import { TodoListState } from "../states/TodoListState";
 import { ADD_TODO, REMOVE_TODO, UPDATE_TODO } from "../actionTypes";
 
-const initState: TodoList = {
+const initState: TodoListState = {
   todos: [
     {
       id: "De124",
@@ -18,11 +18,12 @@ const initState: TodoList = {
       created: new Date(),
     },
   ],
+  isLoading: false
 };
 
-const addTodo = createAction<TodoItem>(ADD_TODO);
-const removeTodo = createAction<string>(REMOVE_TODO);
-const updateTodo = createAction<TodoItem>(UPDATE_TODO);
+export const addTodo = createAction<TodoItem>(ADD_TODO);
+export const removeTodo = createAction<string>(REMOVE_TODO);
+export const updateTodo = createAction<TodoItem>(UPDATE_TODO);
 
 export const todoReducer = createReducer(initState, (builder) => {
   builder

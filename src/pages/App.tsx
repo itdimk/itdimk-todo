@@ -1,11 +1,11 @@
-import { TodoItem } from "../components/TodoItem/TodoItem";
+import { Container } from "../components/CenteredLayout/Container";
 import { TodoList } from "../components/TodoList/TodoList";
 
 function App() {
   return (
-    <div>
+    <Container padding="1rem 15%">
       <TodoList />
-    </div>
+    </Container>
   );
 }
 

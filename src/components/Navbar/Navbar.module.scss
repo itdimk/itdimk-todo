@@ -1,0 +1,34 @@
+﻿.navbar {
+  background-color: #404040;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.navItems {
+  list-style: none;
+  display: flex;
+}
+
+.navItem {
+  display: contents;
+}
+
+.navItem a {
+  padding: 0.5rem 0.9rem;
+  text-decoration: none;
+  outline: none;
+  color: white;
+  border-radius: 20px;
+  margin: 0.2rem 0.6rem;
+}
+
+.navItem a:hover {
+    background-color: salmon;
+    color: black;
+}
+
+.navItem.right a{
+  margin-left: auto;
+}

@@ -1,0 +1,68 @@
+.form {
+  padding: 1.5rem 2rem;
+  border: 2px solid lightblue;
+  border-radius: 20px;
+  width: 20rem;
+}
+
+.title {
+  text-align: center;
+  margin: 0 0 1rem 0;
+  font-weight: normal;
+  padding-bottom: 10px;
+  border-bottom: 4px solid aliceblue;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+}
+
+.group + .group {
+  margin-top: 1rem;
+}
+
+.textInput {
+  display: block;
+  width: 100%;
+  border: lightgray 2px solid;
+  border-radius: 10px;
+  padding: 0.3rem 0.5rem;
+  outline: none;
+  transition: all 0.4s ease;
+}
+
+.textInput:focus {
+  border: skyblue 2px solid;
+  background-color: aliceblue;
+}
+
+.textInput:hover {
+  border: skyblue 2px solid;
+}
+
+.submit {
+  display: block;
+  margin: 1.2rem auto 0 auto;
+  border: skyblue 2px solid;
+  border-radius: 8px;
+  background-color: transparent;
+  transition: all 0.4s ease;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.submit:hover {
+    background-color: aliceblue;
+}
+
+.error {
+  color: orangered;
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
