@@ -1,21 +1,31 @@
-import { getAuth } from "firebase/auth";
+// @ts-nocheck
 import { firebaseApp } from "../../firebaseApp";
-import { all, fork, takeEvery } from "redux-saga/effects";
-import { REGISTER } from "../actionTypes";
+import { all, call, fork, put, take, takeEvery } from "redux-saga/effects";
+import { REGISTER, SET_USER } from "../actionTypes";
+import { auth, registerSaga } from "./authSagas";
+import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
+import { setUser } from "../reducers/authReducer";
+import { eventChannel } from "redux-saga";
 
-function* registerSaga() {
-  yield takeEvery(REGISTER, (action) => {
-    console.log("REGISTER ACTION catched by saga");
-  });
+let authChannel: any = null;
+
+function getAuthChannel() {
+  if (!authChannel) {
+    authChannel = eventChannel((emit) => {
+      const unsubscribe = auth.onAuthStateChanged((user) => emit({ user }));
+      return unsubscribe;
+    });
+  }
+  return authChannel;
+}
+
+function* watchForFirebaseAuth() {
+  const channel: any = yield call(getAuthChannel);
+  const result : any = yield take(channel);
+  console.log(result.user)
+  yield put(setUser(result.user))
 }
 
 export function* rootSaga() {
-  const auth = getAuth(firebaseApp);
-  auth.onAuthStateChanged((state) => {
-    console.log("Auth state changed");
-  });
-
-  yield all([fork(registerSaga)]);
-
-  console.log("Saga is ready");
+  yield all([fork(registerSaga), fork(watchForFirebaseAuth)]);
 }

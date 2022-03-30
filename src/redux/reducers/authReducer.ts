@@ -20,7 +20,7 @@ export const login = createAction<SignInData>(LOGIN);
 export const register = createAction<SignInData>(REGISTER);
 export const logout = createAction(LOGOUT);
 export const resetPass = createAction<string>(RESET_PASSWORD);
-export const setUser = createAction<User>(SET_USER);
+export const setUser = createAction<User | null>(SET_USER);
 export const setLoading = createAction<Boolean>(SET_LOADING);
 
 export const authReducer = createReducer(initState, (builder) => {

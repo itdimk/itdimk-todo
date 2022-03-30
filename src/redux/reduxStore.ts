@@ -11,4 +11,7 @@ export const reduxStore = configureStore({
   devTools: true,
 });
 
+export type RootState = ReturnType<typeof reduxStore.getState>;
+export type AppDispatch = typeof reduxStore.dispatch;
+
 sagaMiddleware.run(rootSaga);
