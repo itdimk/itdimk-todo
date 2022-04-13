@@ -8,6 +8,8 @@ import { Navbar } from "./components/Navbar/Navbar";
 import { SignUp } from "./pages/SignUp/SignUp";
 import "normalize.css";
 import "./index.scss";
+import { SignIn } from "./pages/SignIn/SignIn";
+import { ResetPassword } from "./pages/ResetPassword/ResetPassword";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -17,6 +19,8 @@ ReactDOM.render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
         </Routes>
       </Provider>
     </Router>

@@ -25,10 +25,17 @@
 }
 
 .navItem a:hover {
-    background-color: salmon;
-    color: black;
+  background-color: salmon;
+  color: black;
 }
 
-.navItem.right a{
+.navItem.right > * {
   margin-left: auto;
+}
+
+.navText {
+  display: block;
+  color: darkgray;
+  padding: 0.5rem 0.9rem;
+  margin: 0.2rem 0.6rem;
 }

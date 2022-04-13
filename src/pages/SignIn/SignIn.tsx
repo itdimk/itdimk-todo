@@ -1,32 +1,36 @@
 import { Field, Form } from "react-final-form";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { Container } from "../../components/CenteredLayout/Container";
-import { useAppSelector } from "../../redux/hooks";
-import { register } from "../../redux/reducers/authReducer";
+import { login } from "../../redux/reducers/authReducer";
 import styles from "../../styles/form.module.scss";
+import { useAppSelector } from "../../redux/hooks";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
-export function SignUp() {
+export function SignIn() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { error, user, isLoading } = useAppSelector(
+    (state) => state.authReducer
+  );
+
+  useEffect(() => {
+    if (user) navigate("/");
+  }, [user]);
 
   const onSubmit = (values: any) => {
-    const registerAction = register({
+    const loginAction = login({
       email: values.email,
       password: values.password,
     });
-    dispatch(registerAction);
+    dispatch(loginAction);
   };
-
-  const { isLoading } = useAppSelector((state) => state.authReducer);
 
   const validate = (values: any) => {
     const errors: any = {};
 
     if (!values.email) errors.email = "Required";
     if (!values.password) errors.password = "Required";
-
-    if (values.password !== values.confirmPassword)
-      errors.confirmPassword = "Passwords don't match";
     return errors;
   };
 
@@ -37,7 +41,7 @@ export function SignUp() {
         validate={validate}
         render={({ handleSubmit }) => (
           <form onSubmit={handleSubmit} className={styles.form}>
-            <h2 className={styles.title}>Sign up</h2>
+            <h2 className={styles.title}>Sign in</h2>
 
             <Field name="email">
               {({ input, meta }) => (
@@ -66,23 +70,7 @@ export function SignUp() {
                 </div>
               )}
             </Field>
-
-            <Field name="confirmPassword">
-              {({ input, meta }) => (
-                <div className={styles.group}>
-                  <label className={styles.label}>Confirm password</label>
-                  <input
-                    type="password"
-                    {...input}
-                    className={styles.textInput}
-                  />
-                  {meta.touched && meta.error && (
-                    <span className={styles.error}>{meta.error}</span>
-                  )}
-                </div>
-              )}
-            </Field>
-
+            {error && <div className={styles.error}>{error}</div>}
             <button
               type="submit"
               className={styles.submit}
@@ -92,7 +80,10 @@ export function SignUp() {
             </button>
 
             <p className={styles.bottomText}>
-              Already have an account? <Link to="/sign-in">Sign in</Link>
+              Need an account? <Link to="/sign-up">Sign up</Link>
+            </p>
+            <p className={styles.bottomText}>
+              <Link to="/reset-password">Forgot password</Link>
             </p>
           </form>
         )}

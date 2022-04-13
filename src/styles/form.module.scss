@@ -1,5 +1,5 @@
 .form {
-  padding: 1.5rem 2rem;
+  padding: 1.5rem 2rem 0.5rem 2rem;
   border: 2px solid lightblue;
   border-radius: 20px;
   width: 20rem;
@@ -48,7 +48,7 @@
 
 .submit {
   display: block;
-  margin: 1.2rem auto 0 auto;
+  margin: 0.7rem auto 0 auto;
   border: skyblue 2px solid;
   border-radius: 8px;
   background-color: transparent;
@@ -58,11 +58,21 @@
 }
 
 .submit:hover {
-    background-color: aliceblue;
+  background-color: aliceblue;
 }
 
 .error {
   color: orangered;
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   margin-top: 0.2rem;
+}
+
+.bottomText {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.bottomText+.bottomText {
+  margin-top: 0.5rem;
 }
