@@ -17,12 +17,16 @@ export const auth = getAuth(firebaseApp);
 export function* registerSaga() {
   yield takeEvery(REGISTER, function* (action: any) {
     const signInData = (action as any).payload as SignInData;
-    yield call(
-      createUserWithEmailAndPassword,
-      auth,
-      signInData.email,
-      signInData.password
-    );
+    try {
+      yield call(
+        createUserWithEmailAndPassword,
+        auth,
+        signInData.email,
+        signInData.password
+      );
+    } catch (e: any) {
+      yield put(setError(e.toString()));
+    }
   });
 }
 

@@ -17,7 +17,7 @@ export function SignUp() {
     dispatch(registerAction);
   };
 
-  const { isLoading } = useAppSelector((state) => state.authReducer);
+  const { error, isLoading } = useAppSelector((state) => state.authReducer);
 
   const validate = (values: any) => {
     const errors: any = {};
@@ -83,6 +83,7 @@ export function SignUp() {
               )}
             </Field>
 
+            {error && <div className={styles.error}>{error}</div>}
             <button
               type="submit"
               className={styles.submit}
