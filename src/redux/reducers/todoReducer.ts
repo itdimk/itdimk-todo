@@ -10,20 +10,7 @@ import {
 } from "../actionTypes";
 
 const initState: TodoListState = {
-  todos: [
-    {
-      id: "De124",
-      content: "Some content Some content",
-      title: "My todo title",
-      created: new Date(),
-    },
-    {
-      id: "De125",
-      content: "Some content content  content",
-      title: "My another todo title",
-      created: new Date(),
-    },
-  ],
+  todos: [],
   isLoading: false,
 };
 

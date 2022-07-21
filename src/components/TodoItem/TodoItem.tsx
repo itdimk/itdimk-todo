@@ -12,7 +12,7 @@ export function TodoItem({title, content, created}: TodoItemProps) {
     <div className={styles.card}>
       <p className={styles.title}>{title}</p>
       <p className={styles.content}>{content}</p>
-      <p className={styles.created}>{created.toLocaleDateString()}</p>
+      <p className={styles.created}>{created.toLocaleString()}</p>
     </div>
   );
 }

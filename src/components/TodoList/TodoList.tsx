@@ -13,6 +13,7 @@ export interface TodoListProps {
 
 export function TodoList() {
   const { user } = useAppSelector((state) => state.authReducer);
+  const { todos } = useAppSelector((state) => state.todoReducer);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
@@ -23,24 +24,15 @@ export function TodoList() {
   return (
     <div className={styles.todos}>
       <AddItem />
-      <TodoItem
-        id="0"
-        title="title"
-        content="fklsdjflksdjfkl"
-        created={new Date()}
-      />
-      <TodoItem
-        id="0"
-        title="title"
-        content="fklsdjflksdjfkl"
-        created={new Date()}
-      />
-      <TodoItem
-        id="0"
-        title="title"
-        content="fklsdjflksdjfkl"
-        created={new Date()}
-      />
-     </div>
+      {todos.map((todo) => (
+        <TodoItem
+          id={todo.id}
+          key={todo.id}
+          title={todo.title}
+          content={todo.content}
+          created={todo.created}
+        />
+      ))}
+    </div>
   );
 }

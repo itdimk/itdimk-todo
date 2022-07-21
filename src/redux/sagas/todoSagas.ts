@@ -16,25 +16,12 @@ export function* addTodo() {
   });
 }
 
-export function* loadTodos() {
-  yield takeEvery(LOAD_TODOS, function* (action: any) {
-    const user: { uid: string } = yield select(
-      (store) => store.authReducer.user
-    );
-    const todos: TodoItem[] = yield call(loadTodosFunction, user.uid);
-    yield put(loadedTodos(todos));
-  });
-}
-
 async function writeUserData(userId: string, todoItem: TodoItem) {
   const db = getDatabase();
-  const { id, ...itemContent } = todoItem;
-  await set(ref(db, `users/${userId}/todos/${id}`), itemContent);
-}
-
-async function loadTodosFunction(userId: string) {
-  const db = getDatabase();
-  const result = await get(ref(db, `users/${userId}/todos`));
-  console.log(result);
-  return result;
+  const itemContent = {
+    title: todoItem.title,
+    content: todoItem.content,
+    created: todoItem.created.getTime(),
+  };
+  await set(ref(db, `users/${userId}/todos/${todoItem.id}`), itemContent);
 }

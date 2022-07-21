@@ -1,7 +1,15 @@
 // @ts-nockeck
 import { firebaseApp } from "../../firebaseApp";
 import { getDatabase, ref, set, get, onValue } from "firebase/database";
-import { all, call, fork, put, select, take, takeEvery } from "redux-saga/effects";
+import {
+  all,
+  call,
+  fork,
+  put,
+  select,
+  take,
+  takeEvery,
+} from "redux-saga/effects";
 import { REGISTER, SET_USER } from "../actionTypes";
 import {
   auth,
@@ -13,7 +21,9 @@ import {
 import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 import { setUser } from "../reducers/authReducer";
 import { EventChannel, eventChannel } from "redux-saga";
-import { addTodo, loadTodos } from "./todoSagas";
+import { addTodo } from "./todoSagas";
+import { loadedTodos } from "../reducers/todoReducer";
+import { TodoItem } from "../../types/TodoItem";
 
 let authChannel: any = null;
 let dataChangingChannel: any = null;
@@ -46,16 +56,15 @@ function* getDataChangingChannel() {
   if (!dataChangingChannel) {
     dataChangingChannel = eventChannel((emit) => {
       const db = getDatabase();
-      console.log(auth.currentUser);
       const todosRef = ref(db, `users/${auth.currentUser?.uid}/todos`);
       const unsubscribe = onValue(todosRef, (snapshot) => {
-        if (!snapshot.val()) return;
         const data = snapshot.val();
         emit(
           Object.keys(data).map((k) => ({
             id: k,
             title: data[k].title as string,
             content: data[k].content as string,
+            created: new Date(data[k].created)
           }))
         );
       });
@@ -68,8 +77,8 @@ function* getDataChangingChannel() {
 function* watchForDataChanging() {
   while (true) {
     const channel: unknown = yield call(getDataChangingChannel);
-    const result: unknown = yield take(channel as any);
-    console.log(result);
+    const result: TodoItem[] = yield take(channel as any);
+    yield put(loadedTodos(result));
   }
 }
 
@@ -81,6 +90,6 @@ export function* rootSaga() {
     fork(loginSaga),
     fork(resetPassSaga),
     fork(addTodo),
-    fork(loadTodos),
+    // fork(loadTodos),
   ]);
 }
