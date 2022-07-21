@@ -11,6 +11,7 @@ import { LOGIN, LOGOUT, REGISTER, RESET_PASSWORD } from "../actionTypes";
 import { SignInData } from "../../types/SignInData";
 import { channel, eventChannel } from "redux-saga";
 import { setError, setLoading } from "../reducers/authReducer";
+import { loadTodos } from "../reducers/todoReducer";
 
 export const auth = getAuth(firebaseApp);
 
@@ -54,6 +55,7 @@ export function* loginSaga() {
     }
 
     yield put(setLoading(false));
+    yield put(loadTodos());
   });
 }
 

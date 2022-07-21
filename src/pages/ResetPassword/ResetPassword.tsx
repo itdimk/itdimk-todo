@@ -1,6 +1,6 @@
 import { Field, Form } from "react-final-form";
 import { useDispatch } from "react-redux";
-import { Container } from "../../components/CenteredLayout/Container";
+import { Container } from "../../components/Layout/Container";
 import { login, resetPass } from "../../redux/reducers/authReducer";
 import styles from "../../styles/form.module.scss";
 import { useAppSelector } from "../../redux/hooks";

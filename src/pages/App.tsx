@@ -1,4 +1,4 @@
-import { Container } from "../components/CenteredLayout/Container";
+import { Container } from "../components/Layout/Container";
 import { TodoList } from "../components/TodoList/TodoList";
 
 function App() {

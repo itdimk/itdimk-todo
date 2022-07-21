@@ -1,7 +1,7 @@
 import { Field, Form } from "react-final-form";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { Container } from "../../components/CenteredLayout/Container";
+import { Container } from "../../components/Layout/Container";
 import { useAppSelector } from "../../redux/hooks";
 import { register } from "../../redux/reducers/authReducer";
 import styles from "../../styles/form.module.scss";
