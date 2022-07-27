@@ -21,8 +21,8 @@ import {
 import { collapseTextChangeRangesAcrossMultipleVersions } from "typescript";
 import { setUser } from "../reducers/authReducer";
 import { EventChannel, eventChannel } from "redux-saga";
-import { addTodo } from "./todoSagas";
-import { loadedTodos } from "../reducers/todoReducer";
+import { addTodo, removeTodoSaga } from "./todoSagas";
+import { loadedTodos, removeTodo } from "../reducers/todoReducer";
 import { TodoItem } from "../../types/TodoItem";
 
 let authChannel: any = null;
@@ -64,7 +64,7 @@ function* getDataChangingChannel() {
             id: k,
             title: data[k].title as string,
             content: data[k].content as string,
-            created: new Date(data[k].created)
+            created: new Date(data[k].created),
           }))
         );
       });
@@ -90,6 +90,6 @@ export function* rootSaga() {
     fork(loginSaga),
     fork(resetPassSaga),
     fork(addTodo),
-    // fork(loadTodos),
+    fork(removeTodoSaga),
   ]);
 }

@@ -19,6 +19,7 @@ export function ResetPassword() {
   const onSubmit = (values: any) => {
     const resetPassAction = resetPass(values.email);
     dispatch(resetPassAction);
+    navigate("/sign-in")
   };
 
   const validate = (values: any) => {

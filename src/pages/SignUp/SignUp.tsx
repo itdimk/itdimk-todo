@@ -1,6 +1,6 @@
 import { Field, Form } from "react-final-form";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Container } from "../../components/Layout/Container";
 import { useAppSelector } from "../../redux/hooks";
 import { register } from "../../redux/reducers/authReducer";
@@ -8,6 +8,7 @@ import styles from "../../styles/form.module.scss";
 
 export function SignUp() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onSubmit = (values: any) => {
     const registerAction = register({
@@ -15,6 +16,7 @@ export function SignUp() {
       password: values.password,
     });
     dispatch(registerAction);
+    navigate('/');
   };
 
   const { error, isLoading } = useAppSelector((state) => state.authReducer);

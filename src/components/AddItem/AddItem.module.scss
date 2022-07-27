@@ -1,11 +1,11 @@
 .group {
   display: flex;
-  margin: 0.5rem 0;
+  margin: 0.2rem 0;
+  align-items: center;
 }
 
 .form {
   padding: 0.5rem;
-  margin:  0 1rem;
   display: flex;
   flex-direction: column;
   border: 2px solid lightgray;
@@ -15,14 +15,34 @@
   width: 100%;
   display: block;
   margin: 0 0 0 1rem;
+  outline: none;
+  border: 2px solid lightgray;
+  padding: 0.2rem;
+  border-radius: 10px;
+
+  &:focus{
+    background-color: aliceblue;
+  }
 }
 
 .error {
   color: Red;
   display: block;
-  margin: 0 1rem;
+  font-size: 0.9rem;
+  margin-left: auto;
 }
 
 .submit {
-  width: 100%;
+  padding: 0.2rem 1rem;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0.5rem;
+  background-color: white;
+  border: 2px solid lightgray;
+  cursor: pointer;
+
+  &:hover {
+    background-color: aliceblue;
+  }
 }

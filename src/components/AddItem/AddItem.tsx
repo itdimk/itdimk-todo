@@ -1,10 +1,7 @@
-import { useEffect } from "react";
 import { Form, Field } from "react-final-form";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import { useAppSelector } from "../../redux/hooks";
 import { addTodo } from "../../redux/reducers/todoReducer";
-import { Container } from "../Layout/Container";
 import styles from "./AddItem.module.scss";
 
 export function AddItem() {
@@ -35,29 +32,31 @@ export function AddItem() {
       validate={validate}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit} className={styles.form}>
-          <h2 className={styles.title}>Add item</h2>
-
           <Field name="title">
             {({ input, meta }) => (
-              <div className={styles.group}>
-                <label className={styles.label}>Title</label>
-                <input type="text" {...input} className={styles.textInput} />
+              <>
+                <div className={styles.group}>
+                  <label className={styles.label}>Title</label>
+                  <input type="text" {...input} className={styles.textInput} />
+                </div>
                 {meta.touched && meta.error && (
                   <span className={styles.error}>{meta.error}</span>
                 )}
-              </div>
+              </>
             )}
           </Field>
 
           <Field name="text">
             {({ input, meta }) => (
-              <div className={styles.group}>
-                <label className={styles.label}>Text</label>
-                <input type="text" {...input} className={styles.textInput} />
+              <>
+                <div className={styles.group}>
+                  <label className={styles.label}>Text</label>
+                  <input type="text" {...input} className={styles.textInput} />
+                </div>
                 {meta.touched && meta.error && (
                   <span className={styles.error}>{meta.error}</span>
                 )}
-              </div>
+              </>
             )}
           </Field>
           <button
